@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block static_head %}
+    <link rel="stylesheet" href="{% static 'project_apps/css/about.css' %}">
+{% endblock  %}
+
+{% block title %}
+    <title>About Us</title>
+{% endblock  %}
+
+
+{% block content %}
+<div class = "width22" >
+    <b><h1> Meet the Faces Behind the Tech</h1></b>
+</div>
+
+
+<div class = "width66" >
+<h4> Daniel </h4>
+<p> Having spent close to a decade in the restaurant industry, 
+    I couldn't ignore the glaring issue of food waste, especially considering the financial strains on small businesses. The inefficiencies in inventory management only exacerbated this challenge. This led to my
+     idea for a web application. By seamlessly integrating inventory tracking with budget management, our goal is not just to optimize operations but to significantly reduce food waste, acknowledging the unique 
+     financial constraints faced by small restaurants.
+    </p>
+    </div>
+
+    <div class="width33">
+        <img src="Daniel.jpg" alt="Daniel">
+        </div>
+
+        <div class="width33">
+            <img src="Danyelle.JPG" alt="Danyelle">
+            </div>
+
+<div class = "width66" >   
+<h4> Danyelle </h4>
+<p>I've solely worked for small restaurants, giving me an intimate understanding of the struggle of balancing inventory needs and confronting the issue of food waste, in the context of the heightened financial consciousness required by small businesses. This personal connection fueled my objective: a tool that not only efficiently manages inventory budgets but also directly addresses the financial strain and food waste 
+    concerns unique to smaller restaurants. </p>
+</div>
+
+
+    
+
+{% endblock  %}

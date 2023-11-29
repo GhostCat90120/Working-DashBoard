@@ -1,0 +1,146 @@
+{% extends "base.html" %} {% load static %} {% block static_head %}
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<link rel="stylesheet" href="{% static 'project_apps/css/createChart.css' %}" />
+{% endblock %} {% block title %}
+<title>Create Inventory</title>
+{% endblock %} {% block content %}
+
+<div class="table-create">
+  <div class="left-chart">
+    <div class="graph_position">
+      <div id="myDiv"></div>
+    </div>
+  </div>
+  <div class="right-form">
+    <div class="text-center">
+      <h1>Create New Graph</h1>
+    </div>
+
+    <div>
+      <!-- <form onsubmit="event.preventDefault(); updateGraph();"> -->
+      <form action="{% url 'project_apps:save_to_dashboard' %}" method="post">
+        {% csrf_token %}
+
+        <div class="text-center">
+          <label for="month">Select a Month:</label>
+          <input
+            type="month"
+            id="month"
+            name="month"
+            min="2018-03"
+            value="2023-11"
+          />
+        </div>
+
+        <hr class="line1" />
+
+        <div>
+          <h2 class="text-center">Produce</h2>
+          <input
+            required
+            name="inventory_produce"
+            id="inventory_produce"
+            type="text"
+            placeholder="Amount of items"
+          />
+          <input
+            required
+            name="cost_produce"
+            id="cost_produce"
+            type="text"
+            placeholder="Cost of Shipment"
+          />
+        </div>
+
+        <div>
+          <h2 class="text-center">Meat</h2>
+          <input
+            required
+            name="inventory_meat"
+            id="inventory_meat"
+            type="text"
+            placeholder="Amount of items"
+          />
+          <input
+            required
+            name="cost_meat"
+            id="cost_meat"
+            type="text"
+            placeholder="Cost of Shipment"
+          />
+        </div>
+
+        <div>
+          <h2 class="text-center">Miscellaneous</h2>
+          <label for="inventory_miscellaneous"></label>
+          <input
+            required
+            name="inventory_miscellaneous"
+            id="inventory_miscellaneous"
+            type="text"
+            placeholder="Amount of items"
+          />
+          <input
+            required
+            name="cost_miscellaneous"
+            id="cost_miscellaneous"
+            type="text"
+            placeholder="Cost of Shipment"
+          />
+        </div>
+
+        <hr class="line1" />
+
+        <div class="submit-btn">
+          <input
+            type="button"
+            class="submit"
+            value="Generate"
+            onclick="updateGraph()"
+          />
+          <input type="submit" class="submit" value="Submit" />
+          <input type="reset" class="reset" value="Reset" />
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  function updateGraph(layout) {
+    // Calculate the variables for the pie chart
+    var inventory_produce =
+      parseFloat(document.getElementById('inventory_produce').value) || 0;
+    var cost_produce =
+      parseFloat(document.getElementById('cost_produce').value) || 0;
+
+    var meat = parseFloat(document.getElementById('inventory_meat').value) || 0;
+    var cost_meat = parseFloat(document.getElementById('cost_meat').value) || 0;
+
+    var inventory_miscellaneous =
+      parseFloat(document.getElementById('inventory_miscellaneous').value) || 0;
+    var cost_miscellaneous =
+      parseFloat(document.getElementById('cost_miscellaneous').value) || 0;
+
+    var arrayTotal = [cost_produce, cost_meat, cost_miscellaneous];
+
+    var data = [
+      {
+        type: 'pie',
+        values: arrayTotal,
+        labels: ['Produce', 'Meat', 'Miscellaneous'],
+        textinfo: 'label+percent',
+        textposition: 'outside',
+        automargin: true
+      }
+    ];
+
+    // Update the chart using Plotly
+    Plotly.newPlot('myDiv', data, layout);
+  }
+</script>
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<!-- <script src="{% static 'project_apps/js/pie_chart.js' %}"></script> -->
+
+{% endblock %}

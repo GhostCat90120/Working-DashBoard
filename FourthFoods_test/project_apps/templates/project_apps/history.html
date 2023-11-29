@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block static_head %}
+    <link rel="stylesheet" href="{% static 'project_apps/css/history.css' %}">
+{% endblock  %}
+
+{% block title %}
+    <title>History</title>
+{% endblock  %}
+
+{% block content %}
+
+<div class="title"
+<h1>Compare Your Past</h1>
+</div>
+<br>
+
+
+<div class="row">
+    <div class="column1" >
+        <label for="start">Select a Month:</label>
+        <input type="month" id="start" name="start" min="2018-03" value="2023-11" />
+          
+  </div> 
+
+  <!--CODE THAT DISPLAYS THE SUBMITED MONTH HERE-->
+
+
+  <div class="row">
+    <div class="column2" >
+        <label for="start">Select a Month:</label>
+        <input type="month" id="start" name="start" min="2018-03" value="2023-11" />
+          
+  </div> 
+            <!--CODE THAT DISPLAYS THE SUBMITED MONTH HERE-->
+
+            <div class="row">
+                <div class="column3" >
+                    <label for="start">Select a Month:</label>
+                    <input type="month" id="start" name="start" min="2018-03" value="2023-11" />
+                      
+              </div> 
+   <!--CODE THAT DISPLAYS THE SUBMITED MONTH HERE-->
+
+   <div class="row">
+    <div class="column4" >
+        <label for="start">Select a Month:</label>
+        <input type="month" id="start" name="start" min="2018-03" value="2023-11" />
+          
+  </div> 
+   <!--CODE THAT DISPLAYS THE SUBMITED MONTH HERE-->
+
+<script>
+
+var elements = document.getElementsByClassName("column");
+
+
+var i;
+
+
+
+function gridView() {
+  for (i = 0; i < elements.length; i++) {
+    elements[i].style.width = "50%";
+  }
+}
+</script>
+
+  
+<script>
+   function updateFirstButton() {
+        var button1 = document.getElementById("monthSelect1").value;
+        document.getElementById("button1").innerHTML = button1;
+    }
+
+    function updateSecondButton() {
+        var button2 = document.getElementById("monthSelect2").value;
+        document.getElementById("button2").innerHTML = button2;
+    }
+
+    function updateThirdButton() {
+        var button3 = document.getElementById("monthSelect3").value;
+        document.getElementById("button3").innerHTML = button3;
+    }
+
+    function updateFourthButton() {
+        var button4 = document.getElementById("monthSelect4").value;
+        document.getElementById("button4").innerHTML = button4;
+    }
+</script>
+
+
+
+
+
+{% endblock  %}
+

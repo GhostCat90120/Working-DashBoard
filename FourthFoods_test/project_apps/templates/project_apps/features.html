@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block static_head %}
+    <link rel="stylesheet" href="{% static 'project_apps/css/features.css' %}">
+{% endblock  %}
+
+{% block title %}
+    <title>Features</title>
+{% endblock  %}
+
+
+{% block content %}
+
+<div class = "width66" >
+<h4> BUDGET </h4>
+<p>
+    Our web application offers real-time monitoring, ensuring that small restaurants, 
+    stay within their inventory budgets.  We offer a streamlined approach to inventory
+     management that not only safeguards your budget but also fosters operational efficiency.
+
+    </p>
+    </div>
+
+    <div class="width33">
+        <img src="Calculator.png" alt="calc">
+        </div>
+
+        <div class="width33">
+            <img src="Notebook.png" alt="pad">
+            </div>
+
+<div class = "width66" >   
+<h4> HISTORY </h4>
+<p>
+    Our web application provides small restaurant owners with a clear and insightful 
+    overview of budgetary trends, facilitating informed decision-making and strategic planning.
+     By visualizing past expenditure patterns, our application empowers small establishments to
+      optimize their inventory management, control costs, and enhance overall financial efficiency.
+
+     </p>
+</div>
+
+<div class="width22">
+    <img src="Money.png" alt="money">
+    </div>
+
+
+<div class = "width66" >   
+    <h4> PRICE </h4>
+    <p>
+        We are excited to announce that our web application is entirely free to use. 
+        This means that restaurants, regardless of their profits, can rely on our inventory management system.
+         We understand the unique challenges faced by restaurants, and by providing this Inventory Tracker as 
+         a free feature, we aim to support the industry in optimizing their operations. Enhance your restaurant
+          management experience with our no-costweb application, designed to simplify inventory cost management
+           and contribute to the overall success of your establishment.
+
+         </p>
+    </div>
+   
+
+{% endblock  %}

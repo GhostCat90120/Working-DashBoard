@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block static_head %}
+    <link rel="stylesheet" href="{% static 'project_apps/css/dashboard.css' %}">
+{% endblock  %}
+
+{% block title %}
+    <title>Dashboard</title>
+{% endblock  %}
+
+{% block content %}
+<form>
+   
+<div class="row">
+    <div class="column1" >
+
+        <div class="title">
+        <h3>The Budget: </h3>
+    </div>
+
+        <form>
+            <label for="budget">Enter Current Inventory Budget</label>
+            <br><input type="number" id="budget" name="budget"></br> <input type="submit" value="Submit">
+        </form>
+        
+        <h2> Budget Difference</h2>
+        <p id="desired-budget">The Desired Budget: </p>
+        <p id="projected-budget">Projected Budget: </p>
+
+        <p id="budget-difference">Difference:</p>
+ <!--CODE THAT SUBTRACTS BUDGET TOTAL AND ESTIMATED EXPENSES HERE-->
+
+        <h2> Estimated Expenses</h2>
+        <p id="produce-expense">Produce:    </p>
+        <p id="meat-expense">Meat:   </p>
+        <p id="miscellaneous-expense">Miscellaneous:   </p>
+            <!--CODE THAT TELLS HOW MUCH IS SPENT IN EACH CATEGORY HERE-->
+           
+          
+
+</div>
+
+ 
+  <div class="row">
+    <div class="column2" >
+       
+
+        <div class="month">
+
+         <div class="title">
+            <h3>The Month: </h3> 
+        </div>
+
+          <label for="month">Select a Month:</label>
+          <input type="month" id="month" name="month" min="2018-03" value="{{ month }}" onchange="updateURL()" />
+          <div id="myDiv"></div>
+        </div>
+        
+
+   <div class="submit"  >
+   <!--WRITE CODE TO BRING IN CHART-->
+        <input type="submit" value="Save">
+    
+    
+    </div>     
+  </div> 
+
+<script type="text/javascript">
+var inventory_produce = "{{inventory_produce}}"
+var cost_produce = "{{cost_produce}}"
+var inventory_meat = "{{inventory_meat}}"
+var cost_meat = "{{cost_meat}}"
+var inventory_miscellaneous = "{{inventory_miscellaneous}}"
+var cost_miscellaneous = "{{cost_miscellaneous}}"
+
+var arrayTotal = [cost_produce, cost_meat, cost_miscellaneous];
+
+var data = [
+  {
+    type: 'pie',
+    values: arrayTotal,
+    labels: ['Produce', 'Meat', 'Miscellaneous'],
+    textinfo: 'label+percent',
+    textposition: 'outside',
+    automargin: true
+  }
+];
+
+// Update the chart using Plotly
+Plotly.newPlot('myDiv', data, null);
+
+function updateURL() {
+  const monthInput = document.getElementById('month');
+  const selectedMonth = monthInput.value;
+
+  // Construct the new URL with the selected month
+  const newURL = window.location.pathname + '?month=' + selectedMonth;
+
+  // Push the new state to the browser's history
+  history.pushState({ month: selectedMonth }, null, newURL);
+
+  window.location.reload();
+}
+
+
+    // BUDGET
+// Calculate the budget difference
+var budgetDifference = budgetInput - (cost_produce + cost_meat + cost_miscellaneous);
+
+// Update the HTML element with the budget difference value
+document.getElementById('budget-difference').innerHTML += budgetDifference;
+
+////////////EXPENSES//////
+
+// Update the HTML element with the produce expense value
+document.getElementById('produce-expense').innerHTML += cost_produce;
+
+// Update the HTML element with the meat expense value
+document.getElementById('meat-expense').innerHTML += cost_meat;
+
+// Update the HTML element with the miscellaneous expense value
+document.getElementById('miscellaneous-expense').innerHTML += cost_miscellaneous;
+
+
+</script>
+</form>
+
+<!-- <script src="{% static 'project_apps/js/pie_chart.js' %}"></script> -->
+  
+
+{% endblock  %}
